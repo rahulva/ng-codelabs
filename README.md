@@ -18,3 +18,8 @@
 - Run the application 
 
   `ng serve`
+
+
+goo.gle/homes-app-start
+goo.gle/homes-app-listings
+goo.gle/homes-app-styles

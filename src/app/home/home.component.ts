@@ -15,8 +15,10 @@ import { HousingLocation } from '../housing-location';
       </form>
     </section>
     <section class="results">
-
-      <app-housing-location></app-housing-location>
+      @for(housingLocation of housingLocationList; track housingLocationList) {
+        <app-housing-location [housingLocation]="housingLocation" />
+      }
+      
     </section>
   `,
   styleUrls: ['./home.component.css']
