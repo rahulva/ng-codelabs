@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HousingLocationComponent } from '../housing-location/housing-location.component';
 import { HousingLocation } from '../housing-location';
 import { HousingService } from '../housing.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +17,7 @@ import { HousingService } from '../housing.service';
       </form>
     </section>
     <section class="results">
-      @for(housingLocation of housingLocationList; track housingLocationList) {
+      @for(housingLocation of housingLocationList$ | async; track housingLocationList$) {
         <app-housing-location [housingLocation]="housingLocation" />
       }
       
@@ -25,10 +26,10 @@ import { HousingService } from '../housing.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  housingLocationList: HousingLocation[] = [];
+  housingLocationList$: Observable<HousingLocation[]>;
   housingService: HousingService = inject(HousingService);
 
   constructor() {
-    this.housingLocationList = this.housingService.getAllHousingLocations();
+    this.housingLocationList$ = this.housingService.getAllHousingLocations();
   }
 }
